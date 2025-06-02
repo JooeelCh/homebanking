@@ -1,0 +1,388 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.nav-button{
+    font-size: 1rem;
+    letter-spacing: 1px;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+}
+ul li{
+    width: 50%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 550;
+    letter-spacing: 1px;
+}
+
+.title{
+    padding-top: 100px;
+    background-color: #F5F5F5;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.layout{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.layout header{
+    background-color: #9ce5e5;
+    padding: 0 50px;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.layout header .logo{
+    font-size: 3rem;
+}
+.main-content{
+    background-color: #F5F5F5;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+.main-content .login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem;
+    margin: 0 1rem 0 5rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.sidebar span{
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+.sidebar .navbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.navbar .nav-button{
+    width: 90%;
+    padding: 10px;
+    background-color: #7EDFDF;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.navbar .nav-button:hover{
+    background-color: #73cbcb;
+}
+.main-content .sections{
+    background-color: #ffffff;
+    display: flex;
+    flex: 3;
+    padding: 1rem;
+    margin: 0 5rem 0 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sections .hidden{
+    display: none;
+}
+.sections .section{
+    text-align: center;
+    width: 70%;
+}
+.sections .section h2{
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.login .title{
+    position: relative;
+    bottom: 75px;
+    font-size: 2.5rem;
+}
+.login .login-container{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 700px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+}
+.login .login-container h3{
+    position: relative;
+    bottom: 100px;
+    font-size: 2.1rem;
+}
+.login-container .login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+.login-container .login-form .form-item{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+.login-container .login-form .form-item label{
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+.login-container .login-form .form-item input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.login-container .login-form .form-item input:focus{
+    border-color: #7EDFDF;
+    outline: none;
+}
+.login-container .login-form .enter{
+    position: relative;
+    top: 100px;
+    width: 25%;
+    padding: 10px;
+    background-color: #7EDFDF;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.login-container .login-form .enter:hover{
+    background-color: #73cbcb;
+}
+.login-container .login-form #error{
+    color: red;
+    font-size: 1.2rem;
+}
+
+.sections .home .home-info{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.sections .home .home-info h3{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+.sections .home .home-info h3 span{
+    font-style: italic;
+}
+
+.sections .deposit .balance-button{
+    width: 200px;
+    padding: 10px;
+    margin: 0 10px 20px 10px;
+    background-color: #7EDFDF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.sections .deposit .balance-button:hover{
+    background-color: #73cbcb;
+}
+.sections .deposit .balance-button:focus{
+    background-color: #73cbcb;
+}
+.sections .deposit .balance-option h3{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+.sections .deposit .balance-option input{
+    width: 70%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.sections .deposit .balance-option input:focus{
+    outline: none;
+}
+.sections .deposit .balance-option button{
+    width: 30%;
+    padding: 10px;
+    background-color: #7EDFDF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.sections .deposit .balance-option button:hover{
+    background-color: #73cbcb;
+}
+
+.sections .debt .debt-status h3{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+.sections .debt .debt-status h3 span{
+    font-style: italic;
+}
+.sections .debt .debt-button{
+    width: 200px;
+    padding: 10px;
+    margin: 0 10px 20px 10px;
+    background-color: #7EDFDF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.sections .debt .debt-button:hover{
+    background-color: #73cbcb;
+}
+.sections .debt .debt-button:focus{
+    background-color: #73cbcb;
+}
+.sections .debt .debt-option h3{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+.sections .debt .debt-option input{
+    width: 70%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.sections .debt .debt-option input:focus{
+    outline: none;
+}
+.sections .debt .debt-option button{
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #7EDFDF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.sections .debt .debt-option button:hover{
+    background-color: #73cbcb;
+}
+.sections .debt .debt-option p{
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #ff0000;
+}
+.sections .debt h3{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.sections .transfer .transfer-button{
+    width: 200px;
+    padding: 10px;
+    margin: 0 10px 20px 10px;
+    background-color: #7EDFDF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.sections .transfer .transfer-button:hover{
+    background-color: #73cbcb;
+}
+.sections .transfer .transfer-button:focus{
+    background-color: #73cbcb;
+}
+.sections .transfer .transfer-form h3{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+.sections .transfer .transfer-form form input{
+    width: 70%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.sections .transfer .transfer-form form input:focus{
+    outline: none;
+}
+.sections .transfer .transfer-form form button{
+    width: 30%;
+    padding: 10px;
+    background-color: #7EDFDF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.sections .transfer .transfer-form form button:hover{
+    background-color: #73cbcb;
+}
+
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    background-color: #9ce5e5;
+}
+footer .copyright{
+    font-size: 1.3rem;
+}

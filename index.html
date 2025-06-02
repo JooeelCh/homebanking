@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="layout">
+        <header>
+            <h1 class="logo">Banco de la Ciudad</h1>
+        </header>
+        <div class="main-content">
+            <main class="login">
+                <h2 class="title">Bienvenido al Banco de la Ciudad</h2>
+                <section class="login-container">
+                    <h3>Iniciar sesión</h3>
+                    <form class="login-form" onsubmit="login(event)">
+                        <div class="form-item">
+                            <label for="username">Usuario</label>
+                            <input type="text" id="username" placeholder="admin" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="password">Clave</label>
+                            <input type="password" id="password" placeholder="1234" required>
+                        </div>
+
+                        <button type="submit" class="enter">Ingresar</button>
+                        <span id="error"></span>
+                    </form>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <p class="copyright">&copy; 2025 Banco de la Ciudad</p>
+        </footer>
+    </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

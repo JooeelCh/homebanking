@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="layout">
+        <header>
+            <h1 class="logo">Banco de la Ciudad</h1>
+            <button class="nav-button" onclick="logout()">Cerrar sesión</button>
+        </header>
+
+        <h2 class="title">Bienvenido a tu panel de homebanking</h2>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <span>Menu</span>
+                <nav class="navbar">
+                    <button class="nav-button" onclick="showSection('home')">Inicio</button>
+                    <button class="nav-button" onclick="showSection('balance')">Ingresar | Retirar</button>
+                    <button class="nav-button" onclick="showSection('debts')">Prestamos</button>
+                    <button class="nav-button" onclick="showSection('transfer')">Transferencias</button>
+                    <button class="nav-button" onclick="showSection('movements')">Movimientos</button>
+                </nav>
+            </aside>
+            <main class="sections">
+                <section id="home" class="section home">
+                    <h2>Inicio</h2>
+                    <div class="home-info">
+                        <h3>Saldo: $<span id="actual-balance">0</span></h3>
+                        <h3>Deuda: $<span id="actual-debt">0</span></h3>
+                    </div>
+                    <h2>Ultimos movimientos:</h2>
+                    <div class="last-movements">
+                        <ul id="last-movements"></ul>
+                    </div>
+                </section>
+
+                <section id="balance" class="section deposit hidden">
+                    <h2>Depositos | Retiros</h2>
+                    <button class="balance-button" onclick="balanceOptions('deposit')">Depositar</button>
+                    <button class="balance-button" onclick="balanceOptions('withdraw')">Retirar</button>
+                    <div id="deposit" class="balance-option hidden">
+                        <h3>Depositar</h3>
+                        <form onsubmit="deposit(event)">
+                            <input type="number" id="deposit-amount" required>
+                            <button type="submit">Confirmar depósito</button>
+                        </form>
+                    </div>
+                    <div id="withdraw" class="balance-option hidden">
+                            <h3>Retirar</h3>
+                            <form onsubmit="withdraw(event)">
+                                <input type="number" id="withdraw-amount" required>
+                                <button type="submit">Confirmar retiro</button>
+                            </form>
+                    </div>
+                </section>
+
+                <section id="debts" class="section debt hidden">
+                    <h2>Prestamos</h2>
+                    <div class="debt-status">
+                        <h3>Deuda actual: $<span id="debt">0</span></h3>
+                    </div>
+                    <button class="debt-button" onclick="debtOptions('request')">Solicitar préstamo</button>
+                    <button class="debt-button" onclick="debtOptions('pay')">Pagar préstamo</button>
+                    <div id="debt-request" class="debt-option hidden">
+                        <h3>Solicitar un préstamo</h3>
+                        <form onsubmit="requestDebt(event)">
+                        <input type="number" id="debt-amount" placeholder="Monto" required>
+                        <button type="submit">Pedir préstamo</button>
+                        </form>
+                        <p>Interés: 10%</p>
+                    </div>
+
+                    <div id="debt-pay" class="debt-option hidden">
+                        <h3>Pagar deuda</h3>
+                        <form onsubmit="payDebt(event)">
+                        <input type="number" id="debt-pay-amount" placeholder="Monto a pagar" required>
+                        <button type="submit">Pagar deuda</button>
+                        </form>
+                    </div>
+
+                    <h3>Movimientos relacionados:</h3>
+                    <ul id="debt-movements"></ul>
+                </section>
+
+                <section id="transfer" class="section transfer hidden">
+                    <h2>Transferencias</h2>
+                    <button class="transfer-button" onclick="showTransferForm('alias')">Transferir por Alias</button>
+                    <button class="transfer-button" onclick="showTransferForm('cbu')">Transferir por CBU</button>
+                    <div id="transfer-form-alias" class="transfer-form hidden">
+                        <h3>Transferencia por Alias</h3>
+                        <form onsubmit="submitTransfer(event, 'alias')">
+                            <input type="text" id="alias" placeholder="Alias del destinatario" required>
+                            <input type="number" id="alias-amount" placeholder="Monto" required>
+                            <button type="submit">Enviar transferencia</button>
+                        </form>
+                    </div>
+
+                    <div id="transfer-form-cbu" class="transfer-form hidden">
+                        <h3>Transferencia por CBU</h3>
+                        <form onsubmit="submitTransfer(event, 'cbu')">
+                            <input type="text" id="cbu" placeholder="CBU del destinatario" required>
+                            <input type="number" id="cbu-amount" placeholder="Monto" required>
+                            <button type="submit">Enviar transferencia</button>
+                        </form>
+                    </div>
+                </section>
+
+                <section id="movements" class="section movements hidden">
+                    <h2>Movimientos</h2>
+                    <ul id="movements-list"></ul>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <p class="copyright">&copy; 2025 Banco de la Ciudad</p>
+        </footer>
+    </div>
+    
+  <script src="../js/main.js"></script>
+</body>
+</html>
