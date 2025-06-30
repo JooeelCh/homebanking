@@ -386,9 +386,36 @@ ul li{
   background-color: #d4edda;
   color: #155724;
 }
-.sections .section.message.error {
+.sections .section .message.error {
   background-color: #f8d7da;
   color: #721c24;
+}
+
+.sections .movements .filters {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+.sections .movements .filters label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+.sections .movements .filters select {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    transition: border 0.2s ease;
+}
+.sections .movements .filters select:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
 footer{

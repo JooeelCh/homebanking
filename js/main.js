@@ -185,8 +185,23 @@ function updateMovements() {
   const ul = document.getElementById('movements-list');
   if (!ul) return;
 
+  const filter = document.getElementById('filter-type')?.value || 'all';
+  const order = document.getElementById('order')?.value || 'desc';
+
+  let filtered = [...user.movements];
+
+  filtered = filtered.filter(mov => {
+    if (filter === 'deposit') return mov.includes('Depósito');
+    if (filter === 'withdraw') return mov.includes('Retiro');
+    if (filter === 'loan') return mov.includes('Préstamo') || mov.includes('deuda');
+    if (filter === 'transfer') return mov.includes('Transferencia');
+    return true;
+  });
+
+  if (order === 'asc') filtered = filtered.slice().reverse();
+
   ul.innerHTML = '';
-  user.movements.forEach(mov => {
+  filtered.forEach(mov => {
     const li = document.createElement('li');
     li.textContent = mov;
     ul.appendChild(li);
