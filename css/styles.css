@@ -344,11 +344,11 @@ ul li{
 .sections .transfer .transfer-button:focus{
     background-color: #73cbcb;
 }
-.sections .transfer .transfer-form h3{
+.sections .transfer .transfer-form-option h3{
     font-size: 1.5rem;
     margin-bottom: 20px;
 }
-.sections .transfer .transfer-form form input{
+.sections .transfer .transfer-form-option form input{
     width: 70%;
     padding: 5px;
     margin-bottom: 20px;
@@ -357,10 +357,10 @@ ul li{
     font-size: 1.2rem;
     text-align: center;
 }
-.sections .transfer .transfer-form form input:focus{
+.sections .transfer .transfer-form-option form input:focus{
     outline: none;
 }
-.sections .transfer .transfer-form form button{
+.sections .transfer .transfer-form-option form button{
     width: 30%;
     padding: 10px;
     background-color: #7EDFDF;
@@ -371,10 +371,9 @@ ul li{
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
-.sections .transfer .transfer-form form button:hover{
+.sections .transfer .transfer-form-option form button:hover{
     background-color: #73cbcb;
 }
-
 
 footer{
     display: flex;
