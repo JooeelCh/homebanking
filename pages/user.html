@@ -68,7 +68,7 @@
                     <button class="debt-button" onclick="debtOptions('pay')">Pagar préstamo</button>
                     <div id="debt-request" class="debt-option hidden">
                         <h3>Solicitar un préstamo</h3>
-                        <form onsubmit="requestDebt(event)">
+                        <form onsubmit="requestLoan(event)">
                         <input type="number" id="debt-amount" placeholder="Monto" required>
                         <button type="submit">Pedir préstamo</button>
                         </form>
@@ -95,7 +95,7 @@
                     <button class="transfer-button" onclick="showTransferForm('cbu')">Transferir por CBU</button>
                     <div id="transfer-form-alias" class="transfer-form-option hidden">
                         <h3>Transferencia por Alias</h3>
-                        <form onsubmit="submitTransfer(event, 'alias')">
+                        <form onsubmit="transfer(event, 'alias')">
                             <input type="text" id="alias" placeholder="Alias del destinatario" required>
                             <input type="number" id="alias-amount" placeholder="Monto" required>
                             <button type="submit">Enviar transferencia</button>
@@ -104,7 +104,7 @@
 
                     <div id="transfer-form-cbu" class="transfer-form-option hidden">
                         <h3>Transferencia por CBU</h3>
-                        <form onsubmit="submitTransfer(event, 'cbu')">
+                        <form onsubmit="transfer(event, 'cbu')">
                             <input type="text" id="cbu" placeholder="CBU del destinatario" required>
                             <input type="number" id="cbu-amount" placeholder="Monto" required>
                             <button type="submit">Enviar transferencia</button>

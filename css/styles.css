@@ -375,6 +375,22 @@ ul li{
     background-color: #73cbcb;
 }
 
+.sections .section .message {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: none;
+}
+.sections .section .message.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+.sections .section.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
 footer{
     display: flex;
     align-items: center;

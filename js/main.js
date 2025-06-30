@@ -75,33 +75,60 @@ function showTransferForm(option) {
   showOption('transfer-form', option);
 }
 
+function showMessage(id, text, type = 'success') {
+  const container = document.getElementById(id);
+  if (!container) return;
+
+  container.textContent = text;
+  container.className = `message ${type}`;
+  container.style.display = 'block';
+
+  setTimeout(() => {
+    container.style.display = 'none';
+  }, 3000);
+}
+
 function deposit(event) {
   event.preventDefault();
   const amount = Number(document.getElementById('deposit-amount').value);
-  if (amount <= 0 || isNaN(amount)) return alert("Monto inválido.");
+  if (amount <= 0 || isNaN(amount)) {
+    showMessage('message-balance', "Monto inválido.", 'error');
+    return;
+  }
 
   user.balance += amount;
   addMovement(`Depósito de $${amount}`);
   saveUser();
   updateUI();
+  showMessage('message-balance', `Depósitaste $${amount}. Tu saldo actual es: $${user.balance}`, 'success');
 }
 
 function withdraw(event) {
   event.preventDefault();
   const amount = Number(document.getElementById('withdraw-amount').value);
-  if (amount > user.balance) return alert("Saldo insuficiente.");
-  if (amount <= 0 || isNaN(amount)) return alert("Monto inválido.");
+  if (amount > user.balance) {
+    showMessage('message-balance', "Saldo insuficiente.", 'error');
+    return;
+  }
+  if (amount <= 0 || isNaN(amount)) {
+    showMessage('message-balance', "Monto inválido.", 'error');
+    return;
+  }
 
   user.balance -= amount;
   addMovement(`Retiro de $${amount}`);
   saveUser();
   updateUI();
+  showMessage('message-balance', `Retiraste $${amount}. Tu saldo actual es: $${user.balance}`, 'success');
 }
 
 function requestLoan(event) {
   event.preventDefault();
   const amount = Number(document.getElementById('debt-amount').value);
-  if (amount <= 0 || isNaN(amount)) return alert("Monto inválido.");
+  if (amount <= 0 || isNaN(amount)) {
+    showMessage('message-debt', "Monto inválido.", 'error');
+    return;
+  }
 
   const interest = 0.10;
   const total = amount + amount * interest;
@@ -111,6 +138,25 @@ function requestLoan(event) {
   addMovement(`Préstamo de $${amount} (+10% interés = $${total.toFixed(2)})`);
   saveUser();
   updateUI();
+  showMessage('message-debt', `Préstamo aprobado por $${amount}. Deberás devolver $${total.toFixed(2)}.`, 'success');
+}
+
+function updateDebt() {
+  const debtSpan = document.getElementById('debt');
+  if (debtSpan) {
+    debtSpan.textContent = user.debt;
+  }
+
+  const debtMovements = document.getElementById('debt-movements');
+  if (debtMovements) {
+    debtMovements.innerHTML = '';
+    const debtRelated = user.movements.filter(mov => mov.includes("Préstamo") || mov.includes("deuda"));
+    debtRelated.forEach(mov => {
+      const li = document.createElement('li');
+      li.textContent = mov;
+      debtMovements.appendChild(li);
+    });
+  }
 }
 
 function transfer(event, type) {
@@ -119,13 +165,32 @@ function transfer(event, type) {
   const recipient = document.getElementById(type === 'alias' ? 'alias' : 'cbu').value.trim();
   const amount = Number(document.getElementById(`${type}-amount`).value);
 
-  if (!recipient || amount <= 0 || isNaN(amount)) return alert("Datos inválidos.");
-  if (amount > user.balance) return alert("Saldo insuficiente.");
+  if (!recipient || amount <= 0 || isNaN(amount)) {
+    showMessage('message-transfer', "Datos inválidos.", 'error');
+    return;
+  }
+  if (amount > user.balance) {
+    showMessage('message-transfer', "Saldo insuficiente.", 'error');
+    return;
+  }
 
   user.balance -= amount;
   addMovement(`Transferencia a ${type.toUpperCase()} ${recipient}: $${amount}`);
   saveUser();
   updateUI();
+  showMessage('message-transfer', `Transferiste $${amount} a ${type.toUpperCase()} ${recipient}. Tu saldo actual es: $${user.balance}`, 'success');
+}
+
+function updateMovements() {
+  const ul = document.getElementById('movements-list');
+  if (!ul) return;
+
+  ul.innerHTML = '';
+  user.movements.forEach(mov => {
+    const li = document.createElement('li');
+    li.textContent = mov;
+    ul.appendChild(li);
+  });
 }
 
 function addMovement(desc) {
