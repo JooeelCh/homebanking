@@ -1,36 +1,23 @@
-let user = loadUser() || {
-  username: 'admin',
-  balance: 0,
-  debt: 0,
-  movements: []
-};
-
 function loadUser() {
-  return JSON.parse(localStorage.getItem('user'));
+  return JSON.parse(localStorage.getItem('loggedInUser'));
+}
+let user = loadUser();
+
+if (!user || !localStorage.getItem('isLoggedIn')) {
+  window.location.href = '../index.html';
 }
 
 function saveUser() {
-  localStorage.setItem('user', JSON.stringify(user));
-}
-
-function login(event) {
-  event.preventDefault();
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-
-  if (username === 'admin' && password === '1234') {
-    localStorage.setItem('isLoggedIn', 'true');
-    window.location.href = 'pages/user.html';
-  } else {
-    document.getElementById('error').textContent = 'Usuario o clave incorrectos.';
-  }
+  let users = getUsers();
+  users = users.map(u => u.username === user.username ? user : u);
+  saveUsers(users);
+  localStorage.setItem('loggedInUser', JSON.stringify(user));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   showSection('home');
   updateUI();
-});
-
+})
 
 function showSection(sectionId) {
   document.querySelectorAll('.section').forEach(section => {
@@ -229,5 +216,6 @@ function updateUI() {
 
 function logout() {
   localStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('loggedInUser');
   window.location.href = '../index.html';
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -11,23 +12,24 @@
             <h1 class="logo">Banco de la Ciudad</h1>
         </header>
         <div class="main-content">
-            <main class="login">
+            <main class="user">
                 <h2 class="title">Bienvenido al Banco de la Ciudad</h2>
-                <section class="login-container">
+                <section class="user-container">
                     <h3>Iniciar sesión</h3>
-                    <form class="login-form" onsubmit="login(event)">
+                    <form class="user-form" onsubmit="login(event)">
                         <div class="form-item">
                             <label for="username">Usuario</label>
-                            <input type="text" id="username" placeholder="admin" required>
+                            <input type="text" id="username" required>
                         </div>
                         <div class="form-item">
                             <label for="password">Clave</label>
-                            <input type="password" id="password" placeholder="1234" required>
+                            <input type="password" id="password" required>
                         </div>
 
                         <button type="submit" class="enter">Ingresar</button>
                         <span id="error"></span>
                     </form>
+                    <p>¿No tenes una cuenta? <a href="register.html">Registrate</a></p>
                 </section>
             </main>
         </div>
@@ -37,6 +39,6 @@
         </footer>
     </div>
 
-  <script src="js/main.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>

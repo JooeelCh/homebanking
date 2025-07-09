@@ -3,6 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    font-family: 'Inter', sans-serif;
+}
+
 .nav-button{
     font-size: 1rem;
     letter-spacing: 1px;
@@ -60,7 +65,7 @@ ul li{
     align-items: center;
     height: 90vh;
 }
-.main-content .login{
+.main-content .user{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -129,12 +134,12 @@ ul li{
     margin-bottom: 20px;
 }
 
-.login .title{
+.user .title{
     position: relative;
     bottom: 75px;
     font-size: 2.5rem;
 }
-.login .login-container{
+.user .user-container{
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -146,38 +151,38 @@ ul li{
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
 }
-.login .login-container h3{
+.user .user-container h3{
     position: relative;
     bottom: 100px;
     font-size: 2.1rem;
 }
-.login-container .login-form{
+.user-container .user-form{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     padding: 20px;
 }
-.login-container .login-form .form-item{
+.user-container .user-form .form-item{
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
 }
-.login-container .login-form .form-item label{
+.user-container .user-form .form-item label{
     font-size: 1.1rem;
     margin-bottom: 10px;
 }
-.login-container .login-form .form-item input{
+.user-container .user-form .form-item input{
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-.login-container .login-form .form-item input:focus{
+.user-container .user-form .form-item input:focus{
     border-color: #7EDFDF;
     outline: none;
 }
-.login-container .login-form .enter{
+.user-container .user-form .enter{
     position: relative;
     top: 100px;
     width: 25%;
@@ -190,12 +195,21 @@ ul li{
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
-.login-container .login-form .enter:hover{
+.user-container .user-form .enter:hover{
     background-color: #73cbcb;
 }
-.login-container .login-form #error{
+.user-container .user-form #error{
     color: red;
     font-size: 1.2rem;
+}
+.user-container p a{
+    color: #7EDFDF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+.user-container p a:hover{
+    color: #73cbcb;
 }
 
 .sections .home .home-info{
@@ -426,5 +440,5 @@ footer{
     background-color: #9ce5e5;
 }
 footer .copyright{
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <header>
+        <h1 class="logo">Banco de la Ciudad</h1>
+      </header>
+      <div class="main-content">
+        <main class="user">
+          <section class="user-container">
+            <h3>Crear una cuenta</h3>
+            <form class="user-form" id="register-form" onsubmit="registerUser(event)">
+              <div class="form-item">
+                <label for="new-username">Usuario</label>
+                <input type="text" id="new-username" required />
+              </div>
+              <div class="form-item">
+                <label for="new-password">Clave</label>
+                <input type="password" id="new-password" required />
+              </div>
+              <button type="submit" class="enter">Registrarse</button>
+              <span id="register-error" class="error-message"></span>
+              <span id="register-success" class="success-message"></span>
+            </form>
+            <p>¿Ya tenés cuenta? <a href="index.html">Iniciá sesión</a></p>
+          </section>
+        </main>
+      </div>
+      <footer>
+        <p class="copyright">&copy; 2025 Banco de la Ciudad</p>
+      </footer>
+    </div>
+
+    <script src="js/register.js"></script>
+  </body>
+</html>
