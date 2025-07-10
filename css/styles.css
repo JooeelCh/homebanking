@@ -225,6 +225,35 @@ ul li{
     font-style: italic;
 }
 
+.sections .profile .profile-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}
+.sections .profile .profile-info h3{
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.sections .profile .profile-info h3 span{
+    font-style: italic;
+    font-weight: lighter;
+}
+.sections .profile .profile-keys{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}
+#edit-alias-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 8px;
+
+}
+
 .sections .deposit .balance-button{
     width: 200px;
     padding: 10px;

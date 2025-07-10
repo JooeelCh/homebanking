@@ -3,6 +3,30 @@ function getUsers() {
   return users ? JSON.parse(users) : [];
 }
 
+function saveUsers(users) {
+  localStorage.setItem('users', JSON.stringify(users));
+}
+
+function ensureAdminUser() {
+  const users = getUsers();
+
+  const exists = users.some(u => u.username.toLowerCase() === 'admin');
+  if (!exists) {
+    users.push({
+      username: 'admin',
+      password: '1234',
+      balance: 0,
+      debt: 0,
+      movements: ["Usuario admin creado automáticamente."],
+      alias: 'admin',
+      cbu: '0000000000000000000000'
+    });
+    saveUsers(users);
+  }
+}
+
+ensureAdminUser();
+
 function login(event) {
   event.preventDefault();
   const username = document.getElementById('username').value.trim();

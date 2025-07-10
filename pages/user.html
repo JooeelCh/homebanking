@@ -10,7 +10,10 @@
     <div class="layout">
         <header>
             <h1 class="logo">Banco de la Ciudad</h1>
-            <button class="nav-button" onclick="logout()">Cerrar sesión</button>
+            <div class="header-buttons">
+                <button class="nav-button" onclick="showSection('profile')">Mis Datos</button>
+                <button class="nav-button" onclick="logout()">Cerrar sesión</button>
+            </div>
         </header>
 
         <h2 class="title">Bienvenido a tu panel de homebanking</h2>
@@ -36,6 +39,24 @@
                     <h2>Ultimos movimientos:</h2>
                     <div class="last-movements">
                         <ul id="last-movements"></ul>
+                    </div>
+                </section>
+
+                <section id="profile" class="section profile hidden">
+                    <h2>Mis datos</h2>
+                    <div class="profile-info">
+                        <h3>Nombre: <span id="user-name"></span></p>
+                        <h3>Apellido: <span id="user-lastname"></span></p>
+                    </div>
+                    <div class="profile-keys">
+                        <div class="alias-edit">
+                            <h3>Alias: <span id="user-alias"></span><button id="alias-edit-btn" onclick="enableEdit()">Actualizar alias</button></h3>
+                            <div id="alias-edit-form" class="hidden">
+                                <input type="text" id="alias-input" placeholder="Nuevo alias" />
+                                <button onclick="changeAlias()">Guardar</button>
+                            </div>
+                        </div>
+                        <h3>CBU: <span id="user-cbu"></span></p>
                     </div>
                 </section>
 
@@ -144,6 +165,7 @@
         </footer>
     </div>
     
-  <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

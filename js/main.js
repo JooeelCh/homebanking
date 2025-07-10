@@ -3,6 +3,14 @@ function loadUser() {
 }
 let user = loadUser();
 
+function getUsers() {
+  return JSON.parse(localStorage.getItem('users')) || [];
+}
+
+function saveUsers(users) {
+  localStorage.setItem('users', JSON.stringify(users));
+}
+
 if (!user || !localStorage.getItem('isLoggedIn')) {
   window.location.href = '../index.html';
 }
@@ -13,6 +21,7 @@ function saveUser() {
   saveUsers(users);
   localStorage.setItem('loggedInUser', JSON.stringify(user));
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   showSection('home');
@@ -33,6 +42,10 @@ function showSection(sectionId) {
     updateUI();
   }
 
+  if (sectionId === 'profile') {
+  updateProfile();
+  }
+
   if (sectionId === 'movements') {
     updateMovements();
   }
@@ -48,6 +61,54 @@ function showOption(subOption, option) {
 
   const activo = document.getElementById(`${subOption}-${option}`);
   if (activo) activo.classList.remove('hidden');
+}
+
+function updateProfile() {
+  document.getElementById('user-name').textContent = user.name;
+  document.getElementById('user-lastname').textContent = user.lastName;
+  document.getElementById('user-alias').textContent = user.alias;
+  document.getElementById('user-cbu').textContent = user.cbu;
+}
+
+function enableEdit() {
+  Swal.fire({
+    title: 'Actualizar alias',
+    input: 'text',
+    inputLabel: 'Nuevo alias',
+    inputPlaceholder: 'Ingresá tu nuevo alias',
+    inputValue: user.alias,
+    showCancelButton: true,
+    confirmButtonText: 'Guardar',
+    cancelButtonText: 'Cancelar',
+    preConfirm: (newAlias) => {
+      newAlias = newAlias.trim();
+      if (!newAlias) {
+        Swal.showValidationMessage('El alias no puede estar vacío.');
+        return false;
+      }
+
+      const users = getUsers();
+      const exists = users.some(u => u.alias === newAlias && u.username !== user.username);
+      if (exists) {
+        Swal.showValidationMessage('El alias ya está en uso.');
+        return false;
+      }
+
+      return newAlias;
+    }
+  }).then((result) => {
+    if (result.isConfirmed && result.value) {
+      user.alias = result.value;
+      saveUser();
+      document.getElementById('user-alias').textContent = user.alias;
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Alias actualizado',
+        text: `Tu nuevo alias es: ${user.alias}`
+      });
+    }
+  });
 }
 
 function balanceOptions(option) {
