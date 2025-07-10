@@ -54,27 +54,6 @@ function showSection(sectionId) {
   if (sectionId === 'debts') {
     updateDebt();
   }
-
-  // Ocultar todas las subopciones específicas de cada sección
-  if (sectionId === 'balance') {
-    document.querySelectorAll('.balance-option').forEach(el => el.classList.add('hidden'));
-  }
-
-  if (sectionId === 'debts') {
-    document.querySelectorAll('.debt-option').forEach(el => el.classList.add('hidden'));
-  }
-
-  if (sectionId === 'transfer') {
-    document.querySelectorAll('.transfer-form-option').forEach(el => el.classList.add('hidden'));
-  }
-}
-
-function showOption(subOption, option) {
-  const elementos = document.querySelectorAll(`.${subOption}-option`);
-  elementos.forEach(el => el.classList.add('hidden'));
-
-  const activo = document.getElementById(`${subOption}-${option}`);
-  if (activo) activo.classList.remove('hidden');
 }
 
 function showProfile() {
@@ -124,6 +103,14 @@ function enableEdit() {
       });
     }
   });
+}
+
+function showOption(subOption, option) {
+  const elementos = document.querySelectorAll(`.${subOption}-option`);
+  elementos.forEach(el => el.classList.add('hidden'));
+
+  const activo = document.getElementById(`${subOption}-${option}`);
+  if (activo) activo.classList.remove('hidden');
 }
 
 function balanceOptions(option) {

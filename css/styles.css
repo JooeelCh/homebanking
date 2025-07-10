@@ -64,7 +64,7 @@ button:hover {
     transform: translateY(-1px);
 }
 
-.section.hidden {
+.section.hidden, .option.hidden {
     display: none;
 }
 
@@ -186,11 +186,15 @@ button:hover {
     font-size: 2rem;
     font-weight: 700;
 }
+.layout header .header-buttons{
+    display: flex;
+    gap: 1.5rem;
+}
 .title {
     background-color: #ffffff;
     align-self: center;
     margin-top: 50px;
-    padding: 15px 40px;
+    padding: 10px 40px;
     border-radius: 40px;
     font-size: 2.8rem;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
