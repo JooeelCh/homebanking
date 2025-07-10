@@ -1,473 +1,386 @@
-*{
+/* Estetica Global */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: 'Inter', sans-serif;
+    background-color: #f9fafa;
+    color: #333;
+    line-height: 1.6;
 }
 
-.nav-button{
+span {
+    font-style: italic;
+    font-weight: 400;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: linear-gradient(to right, #e0f7fa, #ffffff);
+    padding: 10px 15px;
+    border-left: 5px solid #00bfa6;
+    border-radius: 10px;
+    margin: 5px auto;
+    width: 70%;
+    font-weight: 600;
+    text-align: left;
+}
+
+.sections input[type="number"], .sections input[type="text"] {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
     font-size: 1rem;
-    letter-spacing: 1px;
-    padding: 10px 50px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
+    margin-bottom: 1rem;
 }
 
-ul{
+input:focus {
+    border-color: #00bfa6;
+    outline: none;
+}
+
+button {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #00bfa6;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #009e88;
+    transform: translateY(-1px);
+}
+
+.section.hidden {
+    display: none;
+}
+
+/* Registro | Inicio de Sesión */
+.user {
     display: flex;
     flex-direction: column;
     align-items: center;
-    list-style-type: none;
+    justify-content: center;
+    width: 100%;
+    padding: 3rem 1rem;
 }
-ul li{
-    width: 50%;
-    background-color: #f0f0f0;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+.user .title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
 }
-
-.title{
-    padding-top: 100px;
-    background-color: #F5F5F5;
-    font-size: 3rem;
+.user-container {
+    background-color: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
     text-align: center;
 }
+.user-container h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+.user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+.form-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.form-item label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.form-item input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.form-item input:focus {
+    border-color: #00bfa6;
+    outline: none;
+}
+.enter {
+    width: 100%;
+    padding: 10px;
+    background-color: #00bfa6;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.enter:hover {
+    background-color: #009e88;
+}
+#error{
+    color: #d32f2f;
+}
 
-.layout{
+.user-container p {
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+.user-container p a {
+    color: #00bfa6;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+.user-container p a:hover {
+    color: #00796b;
+}
+.error-message {
+    color: #d32f2f;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+.success-message {
+    color: #388e3c;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+/* Header */
+.layout {
+    background-color: #f5f5f5;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-.layout header{
-    background-color: #9ce5e5;
+.layout header {
+    background: linear-gradient(90deg, #00bfa6, #80deea);
+    color: #ffffff;
     padding: 0 50px;
     height: 5vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.layout header .logo{
-    font-size: 3rem;
+.layout header .logo {
+    font-size: 2rem;
+    font-weight: 700;
 }
-.main-content{
-    background-color: #F5F5F5;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-}
-.main-content .user{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+.title {
+    background-color: #ffffff;
+    align-self: center;
+    margin-top: 50px;
+    padding: 15px 40px;
+    border-radius: 40px;
+    font-size: 2.8rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar{
-    display: flex;
-    flex-direction: column;
+.main-content {
     flex: 1;
-    padding: 1rem;
-    margin: 0 1rem 0 5rem;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 5rem;
+    gap: 2rem;
 }
-.sidebar span{
-    text-align: center;
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.sidebar span {
     font-size: 1.5rem;
-    letter-spacing: 1px;
-    font-weight: bold;
+    font-weight: 700;
+    display: block;
+    text-align: center;
     margin-bottom: 1.5rem;
 }
-.sidebar .navbar{
+.sidebar .navbar {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
 }
-.navbar .nav-button{
-    width: 90%;
+.navbar .nav-button {
+    width: 100%;
     padding: 10px;
-    background-color: #7EDFDF;
+    background-color: #00bfa6;
     color: white;
     border: none;
-    border-radius: 25px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-.navbar .nav-button:hover{
-    background-color: #73cbcb;
-}
-.main-content .sections{
-    background-color: #ffffff;
-    display: flex;
-    flex: 3;
-    padding: 1rem;
-    margin: 0 5rem 0 1rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.sections .hidden{
-    display: none;
-}
-.sections .section{
-    text-align: center;
-    width: 70%;
-}
-.sections .section h2{
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.user .title{
-    position: relative;
-    bottom: 75px;
-    font-size: 2.5rem;
-}
-.user .user-container{
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 700px;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-}
-.user .user-container h3{
-    position: relative;
-    bottom: 100px;
-    font-size: 2.1rem;
-}
-.user-container .user-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-}
-.user-container .user-form .form-item{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 50px;
-}
-.user-container .user-form .form-item label{
+    border-radius: 12px;
     font-size: 1.1rem;
-    margin-bottom: 10px;
-}
-.user-container .user-form .form-item input{
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.user-container .user-form .form-item input:focus{
-    border-color: #7EDFDF;
-    outline: none;
-}
-.user-container .user-form .enter{
-    position: relative;
-    top: 100px;
-    width: 25%;
-    padding: 10px;
-    background-color: #7EDFDF;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
-.user-container .user-form .enter:hover{
-    background-color: #73cbcb;
-}
-.user-container .user-form #error{
-    color: red;
-    font-size: 1.2rem;
-}
-.user-container p a{
-    color: #7EDFDF;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-}
-.user-container p a:hover{
-    color: #73cbcb;
+.navbar .nav-button:hover {
+    background-color: #009e88;
+    transform: translateY(-2px);
 }
 
-.sections .home .home-info{
+/* Secciones */
+.sections {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.3s ease-in-out;
+}
+.section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+.section h3 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+/* Home */
+.home-info {
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 2rem;
+}
+
+/* Perfil */
+.profile-info, .profile-keys {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.alias-edit {
+    display: flex;
     align-items: center;
+    gap: 0.3rem;
 }
-.sections .home .home-info h3{
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-.sections .home .home-info h3 span{
-    font-style: italic;
+#alias-edit-btn {
+    position: relative;
+    bottom: 0.5rem;
+    color: #000000;
+    background-color: #ffffff;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
 }
 
-.sections .profile .profile-info{
+/* Balace | Pretamos | Transferencias */
+.buttons{
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    gap: 2rem;
-}
-.sections .profile .profile-info h3{
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-.sections .profile .profile-info h3 span{
-    font-style: italic;
-    font-weight: lighter;
-}
-.sections .profile .profile-keys{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-}
-#edit-alias-btn{
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-left: 8px;
-
-}
-
-.sections .deposit .balance-button{
-    width: 200px;
-    padding: 10px;
-    margin: 0 10px 20px 10px;
-    background-color: #7EDFDF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-.sections .deposit .balance-button:hover{
-    background-color: #73cbcb;
-}
-.sections .deposit .balance-button:focus{
-    background-color: #73cbcb;
-}
-.sections .deposit .balance-option h3{
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-.sections .deposit .balance-option input{
-    width: 70%;
-    padding: 5px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    text-align: center;
-}
-.sections .deposit .balance-option input:focus{
-    outline: none;
-}
-.sections .deposit .balance-option button{
-    width: 30%;
-    padding: 10px;
-    background-color: #7EDFDF;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-.sections .deposit .balance-option button:hover{
-    background-color: #73cbcb;
-}
-
-.sections .debt .debt-status h3{
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-.sections .debt .debt-status h3 span{
-    font-style: italic;
-}
-.sections .debt .debt-button{
-    width: 200px;
-    padding: 10px;
-    margin: 0 10px 20px 10px;
-    background-color: #7EDFDF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-.sections .debt .debt-button:hover{
-    background-color: #73cbcb;
-}
-.sections .debt .debt-button:focus{
-    background-color: #73cbcb;
-}
-.sections .debt .debt-option h3{
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-.sections .debt .debt-option input{
-    width: 70%;
-    padding: 5px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    text-align: center;
-}
-.sections .debt .debt-option input:focus{
-    outline: none;
-}
-.sections .debt .debt-option button{
-    width: 30%;
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #7EDFDF;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-.sections .debt .debt-option button:hover{
-    background-color: #73cbcb;
-}
-.sections .debt .debt-option p{
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #ff0000;
-}
-.sections .debt h3{
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.sections .transfer .transfer-button{
-    width: 200px;
-    padding: 10px;
-    margin: 0 10px 20px 10px;
-    background-color: #7EDFDF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-.sections .transfer .transfer-button:hover{
-    background-color: #73cbcb;
-}
-.sections .transfer .transfer-button:focus{
-    background-color: #73cbcb;
-}
-.sections .transfer .transfer-form-option h3{
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-.sections .transfer .transfer-form-option form input{
-    width: 70%;
-    padding: 5px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    text-align: center;
-}
-.sections .transfer .transfer-form-option form input:focus{
-    outline: none;
-}
-.sections .transfer .transfer-form-option form button{
-    width: 30%;
-    padding: 10px;
-    background-color: #7EDFDF;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-.sections .transfer .transfer-form-option form button:hover{
-    background-color: #73cbcb;
-}
-
-.sections .section .message {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  display: none;
-}
-.sections .section .message.success {
-  background-color: #d4edda;
-  color: #155724;
-}
-.sections .section .message.error {
-  background-color: #f8d7da;
-  color: #721c24;
-}
-
-.sections .movements .filters {
-    display: flex;
     gap: 1rem;
-    justify-content: center;
     align-items: center;
+}
+.balance-button, .debt-button, .transfer-button {
+    margin: 0 10px 1rem;
+}
+.option{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.option form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Mensajes */
+.message {
+    margin-top: 1rem;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: none;
+}
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Filtros de movimientos */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
     margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
 }
-.sections .movements .filters label {
-    font-weight: bold;
-    margin-right: 0.5rem;
+.filters label {
+    font-weight: 600;
 }
-.sections .movements .filters select {
+.filters select {
     padding: 0.4rem 0.6rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 6px;
     background-color: white;
+    font-size: 1rem;
     cursor: pointer;
-    transition: border 0.2s ease;
 }
-.sections .movements .filters select:focus {
+.filters select:focus {
+    border-color: #00bfa6;
     outline: none;
-    border-color: #007bff;
 }
 
-footer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 5vh;
-    background-color: #9ce5e5;
+/* Footer */
+footer {
+    background: linear-gradient(90deg, #80deea, #00bfa6);
+    text-align: center;
+    padding: 1rem;
+    font-weight: 600;
+    color: #00695c;
+    margin-top: auto;
 }
-footer .copyright{
-    font-size: 1.1rem;
+.copyright {
+    font-size: 1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

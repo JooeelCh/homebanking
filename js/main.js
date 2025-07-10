@@ -22,11 +22,12 @@ function saveUser() {
   localStorage.setItem('loggedInUser', JSON.stringify(user));
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
   showSection('home');
   updateUI();
 })
+
+document.getElementById('title').textContent = `Bienvenido ${user.name} ${user.lastName}`;
 
 function showSection(sectionId) {
   document.querySelectorAll('.section').forEach(section => {
@@ -43,7 +44,7 @@ function showSection(sectionId) {
   }
 
   if (sectionId === 'profile') {
-  updateProfile();
+    showProfile();
   }
 
   if (sectionId === 'movements') {
@@ -52,6 +53,19 @@ function showSection(sectionId) {
 
   if (sectionId === 'debts') {
     updateDebt();
+  }
+
+  // Ocultar todas las subopciones específicas de cada sección
+  if (sectionId === 'balance') {
+    document.querySelectorAll('.balance-option').forEach(el => el.classList.add('hidden'));
+  }
+
+  if (sectionId === 'debts') {
+    document.querySelectorAll('.debt-option').forEach(el => el.classList.add('hidden'));
+  }
+
+  if (sectionId === 'transfer') {
+    document.querySelectorAll('.transfer-form-option').forEach(el => el.classList.add('hidden'));
   }
 }
 
@@ -63,7 +77,7 @@ function showOption(subOption, option) {
   if (activo) activo.classList.remove('hidden');
 }
 
-function updateProfile() {
+function showProfile() {
   document.getElementById('user-name').textContent = user.name;
   document.getElementById('user-lastname').textContent = user.lastName;
   document.getElementById('user-document').textContent = user.numberDni;
@@ -124,24 +138,15 @@ function showTransferForm(option) {
   showOption('transfer-form', option);
 }
 
-function showMessage(id, text, type = 'success') {
-  const container = document.getElementById(id);
-  if (!container) return;
-
-  container.textContent = text;
-  container.className = `message ${type}`;
-  container.style.display = 'block';
-
-  setTimeout(() => {
-    container.style.display = 'none';
-  }, 3000);
-}
-
 function deposit(event) {
   event.preventDefault();
   const amount = Number(document.getElementById('deposit-amount').value);
   if (amount <= 0 || isNaN(amount)) {
-    showMessage('message-balance', "Monto inválido.", 'error');
+    Swal.fire({
+      icon: 'error',
+      title: 'Monto inválido',
+      text: 'Ingresá un monto mayor a 0.'
+    });
     return;
   }
 
@@ -149,18 +154,31 @@ function deposit(event) {
   addMovement(`Depósito de $${amount}`);
   saveUser();
   updateUI();
-  showMessage('message-balance', `Depósitaste $${amount}. Tu saldo actual es: $${user.balance}`, 'success');
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Depósito realizado',
+    text: `Has depositado $${amount}. Tu saldo actual es $${user.balance}.`
+  });
 }
 
 function withdraw(event) {
   event.preventDefault();
   const amount = Number(document.getElementById('withdraw-amount').value);
   if (amount > user.balance) {
-    showMessage('message-balance', "Saldo insuficiente.", 'error');
+    Swal.fire({
+      icon: 'error',
+      title: 'Saldo insuficiente',
+      text: 'No tenés fondos suficientes para esta operación.'
+    });
     return;
   }
   if (amount <= 0 || isNaN(amount)) {
-    showMessage('message-balance', "Monto inválido.", 'error');
+    Swal.fire({
+      icon: 'error',
+      title: 'Monto inválido',
+      text: 'Ingresá un monto mayor a 0.'
+    });
     return;
   }
 
@@ -168,14 +186,23 @@ function withdraw(event) {
   addMovement(`Retiro de $${amount}`);
   saveUser();
   updateUI();
-  showMessage('message-balance', `Retiraste $${amount}. Tu saldo actual es: $${user.balance}`, 'success');
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Retiro realizado',
+    text: `Has retirado $${amount}. Tu saldo actual es $${user.balance}.`
+  });
 }
 
 function requestLoan(event) {
   event.preventDefault();
   const amount = Number(document.getElementById('debt-amount').value);
   if (amount <= 0 || isNaN(amount)) {
-    showMessage('message-debt', "Monto inválido.", 'error');
+    Swal.fire({
+      icon: 'error',
+      title: 'Monto inválido',
+      text: 'Ingresá un monto mayor a 0.'
+    });
     return;
   }
 
@@ -187,7 +214,12 @@ function requestLoan(event) {
   addMovement(`Préstamo de $${amount} (+10% interés = $${total.toFixed(2)})`);
   saveUser();
   updateUI();
-  showMessage('message-debt', `Préstamo aprobado por $${amount}. Deberás devolver $${total.toFixed(2)}.`, 'success');
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Préstamo aprobado',
+    html: `Monto solicitado: <strong>$${amount}</strong><br>Total a devolver: <strong>$${total.toFixed(2)}</strong>`
+  });
 }
 
 function updateDebt() {
@@ -215,11 +247,19 @@ function transfer(event, type) {
   const amount = Number(document.getElementById(`${type}-amount`).value);
 
   if (!recipient || amount <= 0 || isNaN(amount)) {
-    showMessage('message-transfer', "Datos inválidos.", 'error');
+    Swal.fire({
+      icon: 'error',
+      title: 'Datos inválidos',
+      text: 'Completá todos los campos correctamente.'
+    });
     return;
   }
   if (amount > user.balance) {
-    showMessage('message-transfer', "Saldo insuficiente.", 'error');
+    Swal.fire({
+      icon: 'error',
+      title: 'Saldo insuficiente',
+      text: 'No tenés saldo suficiente para realizar esta transferencia.'
+    });
     return;
   }
 
@@ -227,7 +267,12 @@ function transfer(event, type) {
   addMovement(`Transferencia a ${type.toUpperCase()} ${recipient}: $${amount}`);
   saveUser();
   updateUI();
-  showMessage('message-transfer', `Transferiste $${amount} a ${type.toUpperCase()} ${recipient}. Tu saldo actual es: $${user.balance}`, 'success');
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Transferencia exitosa',
+    text: `Transferiste $${amount} a ${type.toUpperCase()} ${recipient}.`
+  });
 }
 
 function updateMovements() {
