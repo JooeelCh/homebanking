@@ -66,6 +66,7 @@ function showOption(subOption, option) {
 function updateProfile() {
   document.getElementById('user-name').textContent = user.name;
   document.getElementById('user-lastname').textContent = user.lastName;
+  document.getElementById('user-document').textContent = user.numberDni;
   document.getElementById('user-alias').textContent = user.alias;
   document.getElementById('user-cbu').textContent = user.cbu;
 }

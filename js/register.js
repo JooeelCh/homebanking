@@ -44,6 +44,7 @@ function registerUser(event) {
   event.preventDefault();
   const name = document.getElementById('new-name').value.trim();
   const lastName = document.getElementById('new-lastname').value.trim();
+  const numberDni = document.getElementById("new-document").value.trim();
   const username = document.getElementById('new-username').value.trim();
   const password = document.getElementById('new-password').value;
 
@@ -62,6 +63,7 @@ function registerUser(event) {
   const newUser = {
     name,
     lastName,
+    numberDni,
     username,
     password,
     balance: 0,
