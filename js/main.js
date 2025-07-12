@@ -250,9 +250,19 @@ function requestLoan(event) {
 
 function updateDebt() {
   const debtSpan = document.getElementById('debt');
+  const payDebtBtn = document.getElementById('pay-debt-btn');
+
   if (debtSpan) {
     debtSpan.textContent = user.debt;
   }
+
+    if (payDebtBtn) {
+    payDebtBtn.disabled = user.debt === 0;
+    payDebtBtn.style.opacity = user.debt === 0 ? '0.5' : '1';
+    payDebtBtn.style.cursor = user.debt === 0 ? 'not-allowed' : 'pointer';
+    payDebtBtn.textContent = user.debt === 0 ? 'Sin deuda' : 'Pagar préstamo';
+  }
+
 
   const debtMovements = document.getElementById('debt-movements');
   if (debtMovements) {
@@ -264,6 +274,55 @@ function updateDebt() {
       debtMovements.appendChild(li);
     });
   }
+}
+
+function payDebt(event) {
+  event.preventDefault();
+  const amount = Number(document.getElementById('debt-pay-amount').value);
+
+  if (amount <= 0 || isNaN(amount)) {
+    Swal.fire({
+      ...getSwalTheme(),
+      icon: 'error',
+      title: 'Monto inválido',
+      text: 'Ingresá un monto mayor a 0.'
+    });
+    return;
+  }
+
+  if (amount > user.balance) {
+    Swal.fire({
+      ...getSwalTheme(),
+      icon: 'error',
+      title: 'Saldo insuficiente',
+      text: 'No tenés suficiente saldo para pagar esa deuda.'
+    });
+    return;
+  }
+
+  if (amount > user.debt) {
+    Swal.fire({
+      ...getSwalTheme(),
+      icon: 'warning',
+      title: 'Monto mayor a la deuda',
+      text: `Tu deuda es de $${user.debt}. No podés pagar más de eso.`
+    });
+    return;
+  }
+
+  user.balance -= amount;
+  user.debt -= amount;
+  addMovement(`Pago de deuda por $${amount}`);
+  saveUser();
+  updateUI();
+  updateDebt();
+
+  Swal.fire({
+    ...getSwalTheme(),
+    icon: 'success',
+    title: 'Deuda pagada',
+    text: `Pagaste $${amount}. Deuda restante: $${user.debt.toFixed(2)}`
+  });
 }
 
 function transfer(event, type) {
