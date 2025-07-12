@@ -38,10 +38,10 @@ function toggleDarkMode() {
 function getSwalTheme() {
   const isDark = document.body.classList.contains('dark-mode');
   return {
-    background: isDark ? '#1e1e1e' : '#ffffff',
-    color: isDark ? '#ffffff' : '#000000',
-    confirmButtonColor: isDark ? '#00bfa6' : '#3085d6',
-    cancelButtonColor: isDark ? '#555' : '#aaa'
+    background: isDark ? '#0d1117' : '#ffffff',
+    color: isDark ? '#f1f1f1' : '#212529',
+    confirmButtonColor: isDark ? '#00bfa6' : '#007bff',
+    cancelButtonColor: isDark ? '#888888' : '#6c757d'
   };
 }
 
@@ -263,9 +263,9 @@ function requestLoan(event) {
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire({
-        icon: 'success',
-        title: 'Préstamo aprobado',
-        html: `Monto solicitado: <strong>$${amount}</strong><br>Total a devolver: <strong>$${total.toFixed(2)}</strong>`,
+        icon: "success",
+        title: "Préstamo aprobado",
+        html: `Monto solicitado: <strong>$${amount}</strong>.<br>Total a devolver: <strong>$${total.toFixed(2)}</strong>`,
         ...swalTheme,
       });
     }
