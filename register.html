@@ -4,13 +4,20 @@
     <meta charset="UTF-8" />  
     <title>Registro</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <div class="layout">
       <header>
         <h1 class="logo"><i class="fas fa-landmark"></i> Banco de la Ciudad</h1>
+        <div class="dark-mode-toggle">
+          <label class="switch">
+              <input type="checkbox" id="darkModeSwitch" onchange="toggleDarkMode()">
+              <span class="slider"></span>
+          </label>
+          <span class="toggle-label">Modo Oscuro</span>
+        </div>
       </header>
       <div class="main-content">
         <main class="user">

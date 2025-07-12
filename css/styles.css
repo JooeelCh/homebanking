@@ -17,6 +17,10 @@ span {
     font-weight: 400;
 }
 
+h2, h3 {
+    color: #333333;
+}
+
 ul {
     list-style: none;
     padding: 0;
@@ -80,7 +84,6 @@ button:hover {
 .user .title {
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    color: #333;
 }
 .user-container {
     background-color: #ffffff;
@@ -88,18 +91,18 @@ button:hover {
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     max-width: 500px;
+    min-height: 600px;
     width: 100%;
     text-align: center;
 }
 .user-container h3 {
     font-size: 1.8rem;
-    margin-bottom: 2rem;
-    color: #333;
+    margin-bottom: 4rem;
 }
 .user-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 3rem;
     width: 100%;
 }
 .form-item {
@@ -125,15 +128,17 @@ button:hover {
     outline: none;
 }
 .enter {
-    width: 100%;
+    align-self: center;
+    width: 70%;
     padding: 10px;
     background-color: #00bfa6;
     border: none;
+    margin-top: 2rem;
     border-radius: 8px;
     font-size: 1.2rem;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 .enter:hover {
     background-color: #009e88;
@@ -294,8 +299,8 @@ button:hover {
 #alias-edit-btn {
     position: relative;
     bottom: 0.5rem;
-    color: #000000;
-    background-color: #ffffff;
+    background-color: transparent;
+    color: #00bfa6;
     border: none;
     padding: 5px 8px;
     cursor: pointer;
@@ -375,6 +380,104 @@ footer {
 }
 .copyright {
     font-size: 1rem;
+}
+
+/* Modo oscuro */
+body.dark-mode h2, body.dark-mode h3 {
+    color: #ffffff;
+}
+
+body.dark-mode header {
+    background: linear-gradient(90deg, #00bfa6, #80deea);
+    color: #ffffff;
+}
+
+body.dark-mode .layout {
+    background-color: #0d1117;
+    color: #e0e0e0;
+    box-shadow: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+
+}
+
+body.dark-mode .sidebar, body.dark-mode .sections .section, body.dark-mode .user-container, body.dark-mode .title {
+    background-color: #0d1117;
+    color: #e0e0e0;
+    border: 4px solid #00bfa6;
+    box-shadow: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+
+}
+
+body.dark-mode button {
+    background-color: #333;
+    color: #e0e0e0;
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark-mode button:hover {
+    background-color: #09233E;
+}
+
+body.dark-mode input, body.dark-mode select {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+body.dark-mode ul li {
+    background: linear-gradient(to right, #2a2a2a, #1e1e1e);
+    border-left: 5px solid #00bfa6;
+}
+
+/* Boton dinamico */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; width: 18px;
+    left: 4px; bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #09233E;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
 }
 
 @keyframes fadeIn {

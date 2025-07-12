@@ -29,6 +29,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById('title').textContent = `Bienvenido ${user.name} ${user.lastName}`;
 
+function toggleDarkMode() {
+  const isDark = document.getElementById('darkModeSwitch').checked;
+  document.body.classList.toggle('dark-mode', isDark);
+  localStorage.setItem('darkMode', isDark);
+}
+
+function getSwalTheme() {
+  const isDark = document.body.classList.contains('dark-mode');
+  return {
+    background: isDark ? '#1e1e1e' : '#ffffff',
+    color: isDark ? '#ffffff' : '#000000',
+    confirmButtonColor: isDark ? '#00bfa6' : '#3085d6',
+    cancelButtonColor: isDark ? '#555' : '#aaa'
+  };
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const isDark = localStorage.getItem('darkMode') === 'true';
+  document.getElementById('darkModeSwitch').checked = isDark;
+  document.body.classList.toggle('dark-mode', isDark);
+
+  showSection('home');
+  updateUI();
+});
+
 function showSection(sectionId) {
   document.querySelectorAll('.section').forEach(section => {
     section.classList.add('hidden');
@@ -65,6 +90,8 @@ function showProfile() {
 }
 
 function enableEdit() {
+  const swalTheme = getSwalTheme();
+
   Swal.fire({
     title: 'Actualizar alias',
     input: 'text',
@@ -74,6 +101,7 @@ function enableEdit() {
     showCancelButton: true,
     confirmButtonText: 'Guardar',
     cancelButtonText: 'Cancelar',
+    ...swalTheme,
     preConfirm: (newAlias) => {
       newAlias = newAlias.trim();
       if (!newAlias) {
@@ -99,7 +127,8 @@ function enableEdit() {
       Swal.fire({
         icon: 'success',
         title: 'Alias actualizado',
-        text: `Tu nuevo alias es: ${user.alias}`
+        text: `Tu nuevo alias es: ${user.alias}`,
+        ...swalTheme,
       });
     }
   });
@@ -127,12 +156,14 @@ function showTransferForm(option) {
 
 function deposit(event) {
   event.preventDefault();
+  const swalTheme = getSwalTheme();
   const amount = Number(document.getElementById('deposit-amount').value);
   if (amount <= 0 || isNaN(amount)) {
     Swal.fire({
       icon: 'error',
       title: 'Monto inválido',
-      text: 'Ingresá un monto mayor a 0.'
+      text: 'Ingresá un monto mayor a 0.',
+      ...swalTheme,
     });
     return;
   }
@@ -145,18 +176,21 @@ function deposit(event) {
   Swal.fire({
     icon: 'success',
     title: 'Depósito realizado',
-    text: `Has depositado $${amount}. Tu saldo actual es $${user.balance}.`
+    text: `Has depositado $${amount}. Tu saldo actual es $${user.balance}.`,
+    ...swalTheme,
   });
 }
 
 function withdraw(event) {
   event.preventDefault();
+  const swalTheme = getSwalTheme();
   const amount = Number(document.getElementById('withdraw-amount').value);
   if (amount > user.balance) {
     Swal.fire({
       icon: 'error',
       title: 'Saldo insuficiente',
-      text: 'No tenés fondos suficientes para esta operación.'
+      text: 'No tenés fondos suficientes para esta operación.',
+      ...swalTheme,
     });
     return;
   }
@@ -164,7 +198,8 @@ function withdraw(event) {
     Swal.fire({
       icon: 'error',
       title: 'Monto inválido',
-      text: 'Ingresá un monto mayor a 0.'
+      text: 'Ingresá un monto mayor a 0.',
+      ...swalTheme,
     });
     return;
   }
@@ -177,18 +212,21 @@ function withdraw(event) {
   Swal.fire({
     icon: 'success',
     title: 'Retiro realizado',
-    text: `Has retirado $${amount}. Tu saldo actual es $${user.balance}.`
+    text: `Has retirado $${amount}. Tu saldo actual es $${user.balance}.`,
+    ...swalTheme,
   });
 }
 
 function requestLoan(event) {
   event.preventDefault();
+  const swalTheme = getSwalTheme();
   const amount = Number(document.getElementById('debt-amount').value);
   if (amount <= 0 || isNaN(amount)) {
     Swal.fire({
       icon: 'error',
       title: 'Monto inválido',
-      text: 'Ingresá un monto mayor a 0.'
+      text: 'Ingresá un monto mayor a 0.',
+      ...swalTheme,
     });
     return;
   }
@@ -205,7 +243,8 @@ function requestLoan(event) {
   Swal.fire({
     icon: 'success',
     title: 'Préstamo aprobado',
-    html: `Monto solicitado: <strong>$${amount}</strong><br>Total a devolver: <strong>$${total.toFixed(2)}</strong>`
+    html: `Monto solicitado: <strong>$${amount}</strong><br>Total a devolver: <strong>$${total.toFixed(2)}</strong>`,
+    ...swalTheme,
   });
 }
 
@@ -229,6 +268,7 @@ function updateDebt() {
 
 function transfer(event, type) {
   event.preventDefault();
+  const swalTheme = getSwalTheme();
 
   const recipient = document.getElementById(type === 'alias' ? 'alias' : 'cbu').value.trim();
   const amount = Number(document.getElementById(`${type}-amount`).value);
@@ -237,7 +277,8 @@ function transfer(event, type) {
     Swal.fire({
       icon: 'error',
       title: 'Datos inválidos',
-      text: 'Completá todos los campos correctamente.'
+      text: 'Completá todos los campos correctamente.',
+      ...swalTheme,
     });
     return;
   }
@@ -245,7 +286,8 @@ function transfer(event, type) {
     Swal.fire({
       icon: 'error',
       title: 'Saldo insuficiente',
-      text: 'No tenés saldo suficiente para realizar esta transferencia.'
+      text: 'No tenés saldo suficiente para realizar esta transferencia.',
+      ...swalTheme,
     });
     return;
   }
@@ -258,7 +300,8 @@ function transfer(event, type) {
   Swal.fire({
     icon: 'success',
     title: 'Transferencia exitosa',
-    text: `Transferiste $${amount} a ${type.toUpperCase()} ${recipient}.`
+    text: `Transferiste $${amount} a ${type.toUpperCase()} ${recipient}.`,
+    ...swalTheme,
   });
 }
 

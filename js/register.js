@@ -1,3 +1,18 @@
+function toggleDarkMode() {
+  const isDark = document.getElementById('darkModeSwitch').checked;
+  document.body.classList.toggle('dark-mode', isDark);
+  localStorage.setItem('darkMode', isDark);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const isDark = localStorage.getItem('darkMode') === 'true';
+  document.getElementById('darkModeSwitch').checked = isDark;
+  document.body.classList.toggle('dark-mode', isDark);
+
+  showSection('home');
+  updateUI();
+});
+
 function getUsers() {
   const users = localStorage.getItem('users');
   return users ? JSON.parse(users) : [];

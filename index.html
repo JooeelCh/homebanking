@@ -11,10 +11,17 @@
         <div class="layout">
             <header>
                 <h1 class="logo"><i class="fas fa-landmark"></i> Banco de la Ciudad</h1>
+                <div class="dark-mode-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeSwitch" onchange="toggleDarkMode()">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="toggle-label">Modo Oscuro</span>
+                </div>
             </header>
+            <h2 class="title">Bienvenido al Banco de la Ciudad</h2>
             <div class="main-content">
                 <main class="user">
-                    <h2 class="title">Bienvenido al Banco de la Ciudad</h2>
                     <section class="user-container">
                         <h3>Iniciar sesión</h3>
                         <form class="user-form" onsubmit="login(event)">
