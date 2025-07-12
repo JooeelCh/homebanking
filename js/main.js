@@ -335,7 +335,6 @@ function updateMovements() {
 function addMovement(desc) {
   const entry = `${new Date().toLocaleString()} - ${desc}`;
   user.movements.unshift(entry);
-  if (user.movements.length > 10) user.movements.pop();
 }
 
 function updateUI() {
