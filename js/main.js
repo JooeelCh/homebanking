@@ -204,16 +204,28 @@ function withdraw(event) {
     return;
   }
 
-  user.balance -= amount;
-  addMovement(`Retiro de $${amount}`);
-  saveUser();
-  updateUI();
-
   Swal.fire({
-    icon: 'success',
-    title: 'Retiro realizado',
-    text: `Has retirado $${amount}. Tu saldo actual es $${user.balance}.`,
+    icon: 'warning',
+    title: '¿Confirmás el retiro?',
+    text: `Vas a retirar $${amount}.`,
+    showCancelButton: true,
+    confirmButtonText: 'Sí, retirar',
+    cancelButtonText: 'Cancelar',
     ...swalTheme,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      user.balance -= amount;
+      addMovement(`Retiro de $${amount}`);
+      saveUser();
+      updateUI();
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Retiro realizado',
+        text: `Has retirado $${amount}. Tu saldo actual es $${user.balance}.`,
+        ...swalTheme,
+      });
+    }
   });
 }
 
@@ -241,10 +253,22 @@ function requestLoan(event) {
   updateUI();
 
   Swal.fire({
-    icon: 'success',
-    title: 'Préstamo aprobado',
-    html: `Monto solicitado: <strong>$${amount}</strong><br>Total a devolver: <strong>$${total.toFixed(2)}</strong>`,
-    ...swalTheme,
+  icon: 'warning',
+  title: '¿Estas seguro de solicitar el prestamo?',
+  html: `Vas a solicitar un préstamo de <strong>$${amount}</strong>.<br>Tendras que devolver: <strong>$${total.toFixed(2)}</strong>`,
+  showCancelButton: true,
+  confirmButtonText: 'Sí, solicitar',
+  cancelButtonText: 'Cancelar',
+  ...swalTheme,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Préstamo aprobado',
+        html: `Monto solicitado: <strong>$${amount}</strong><br>Total a devolver: <strong>$${total.toFixed(2)}</strong>`,
+        ...swalTheme,
+      });
+    }
   });
 }
 
@@ -351,16 +375,28 @@ function transfer(event, type) {
     return;
   }
 
-  user.balance -= amount;
-  addMovement(`Transferencia a ${type.toUpperCase()} ${recipient}: $${amount}`);
-  saveUser();
-  updateUI();
-
   Swal.fire({
-    icon: 'success',
-    title: 'Transferencia exitosa',
-    text: `Transferiste $${amount} a ${type.toUpperCase()} ${recipient}.`,
-    ...swalTheme,
+  icon: 'warning',
+  title: '¿Confirmás la transferencia?',
+  html: `Vas a transferir <strong>$${amount}</strong> al ${type.toUpperCase()}: <strong>${recipient}</strong>.`,
+  showCancelButton: true,
+  confirmButtonText: 'Sí, transferir',
+  cancelButtonText: 'Cancelar',
+  ...swalTheme,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      user.balance -= amount;
+      addMovement(`Transferencia a ${type.toUpperCase()} ${recipient}: $${amount}`);
+      saveUser();
+      updateUI();
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Transferencia exitosa',
+        text: `Transferiste $${amount} a ${type.toUpperCase()} ${recipient}.`,
+        ...swalTheme,
+      });
+    }
   });
 }
 

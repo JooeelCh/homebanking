@@ -79,21 +79,21 @@
                     <section id="balance" class="section deposit hidden">
                         <h2>Depositos | Retiros</h2>
                         <div class="buttons">
-                            <button class="balance-button" onclick="balanceOptions('deposit')">Depositar</button>
-                            <button class="balance-button" onclick="balanceOptions('withdraw')">Retirar</button>
+                            <button class="balance-button" onclick="balanceOptions('deposit')">Depositos</button>
+                            <button class="balance-button" onclick="balanceOptions('withdraw')">Retiros</button>
                         </div>
                         <div id="balance-deposit" class="balance-option option hidden">
-                            <h3>Depositar</h3>
+                            <h3>Ingrese el monto que quiere depositar</h3>
                             <form onsubmit="deposit(event)">
                                 <input type="number" id="deposit-amount" required>
-                                <button type="submit">Confirmar depósito</button>
+                                <button type="submit">Depositar</button>
                             </form>
                         </div>
                         <div id="balance-withdraw" class="balance-option option hidden">
-                                <h3>Retirar</h3>
+                                <h3>Ingrese el monto que quiere retirar</h3>
                                 <form onsubmit="withdraw(event)">
                                     <input type="number" id="withdraw-amount" required>
-                                    <button type="submit">Confirmar retiro</button>
+                                    <button type="submit">Retirar</button>
                                 </form>
                         </div>
                         <div id="message-balance" class="message"></div>
