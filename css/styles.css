@@ -101,6 +101,12 @@ button:hover {
     gap: 3rem;
     width: 100%;
 }
+.user-form button {
+    background-color: #007bff;
+}
+.user-form button:hover{
+    background-color: #0056b3;
+}
 .form-item {
     display: flex;
     flex-direction: column;
@@ -339,11 +345,19 @@ footer {
 }
 .copyright {
     font-size: 1rem;
+    color: #ffffff;
 }
 
 /* Modo oscuro */
 body.dark-mode {
     color: #f1f1f1;
+}
+
+body.dark-mode .user-form button {
+    background-color: #00bfa6;
+}
+body.dark-mode .user-form button:hover {
+    background-color: #00a896;
 }
 
 body.dark-mode header {
@@ -365,7 +379,27 @@ body.dark-mode .sidebar, body.dark-mode .sections .section, body.dark-mode .user
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
- body.dark-mode .navbar .nav-button {
+body.dark-mode .swal2-confirm.swal2-styled {
+  background-color: #00bfa6 !important;
+  color: #ffffff !important;
+  border: none;
+}
+
+body.dark-mode .swal2-confirm.swal2-styled:hover {
+  background-color: #00a896 !important;
+}
+
+body.dark-mode .swal2-cancel.swal2-styled {
+  background-color: #888888 !important;
+  color: #ffffff !important;
+  border: none;
+}
+
+body.dark-mode .swal2-cancel.swal2-styled:hover {
+  background-color: #6f6f6f !important;
+}
+
+body.dark-mode .navbar .nav-button {
     background-color: #00bfa6;
 }
 body.dark-mode .navbar .nav-button:hover {
@@ -376,7 +410,6 @@ body.dark-mode button {
     background-color: #888888;
     transition: all 0.3s ease-in-out;
 }
-
 body.dark-mode button:hover {
     background-color: #6f6f6f;
 }
@@ -423,7 +456,7 @@ body.dark-mode footer{
     cursor: pointer;
     top: 0; left: 0;
     right: 0; bottom: 0;
-    background-color: #ccc;
+    background-color: #6c757d;
     transition: 0.4s;
     border-radius: 34px;
 }

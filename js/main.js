@@ -37,6 +37,7 @@ function toggleDarkMode() {
 
 function getSwalTheme() {
   const isDark = document.body.classList.contains('dark-mode');
+
   return {
     background: isDark ? '#0d1117' : '#ffffff',
     color: isDark ? '#f1f1f1' : '#212529',
