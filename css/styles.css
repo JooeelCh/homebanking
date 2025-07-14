@@ -58,7 +58,6 @@ button {
     color: #ffffff;
     transition: all 0.2s ease;
 }
-
 button:hover {
     background-color: #5a6268;
     transform: translateY(-1px);
@@ -135,13 +134,13 @@ button:hover {
     font-size: 1rem;
 }
 .user-container p a {
-    color: #00bfa6;
+    color: #007bff;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 .user-container p a:hover {
-    color: #00796b;
+    color: #0056b3;
 }
 .error-message {
     color: #d32f2f;
@@ -358,6 +357,13 @@ body.dark-mode .user-form button {
 }
 body.dark-mode .user-form button:hover {
     background-color: #00a896;
+}
+
+body.dark-mode .user-container p a {
+    color: #00bfa6;
+}
+body.dark-mode .user-container p a:hover {
+    color: #00a896;
 }
 
 body.dark-mode header {
