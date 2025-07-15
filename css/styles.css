@@ -282,7 +282,7 @@ button:hover {
     position: relative;
     bottom: 0.5rem;
     background-color: transparent;
-    color: #00bfa6;
+    color: #007bff;
     border: none;
     padding: 5px 8px;
     cursor: pointer;
@@ -436,6 +436,10 @@ body.dark-mode button:hover {
     background-color: #6f6f6f;
 }
 
+body.dark-mode #alias-edit-btn {
+    color: #00bfa6;
+}
+
 body.dark-mode input, body.dark-mode select {
     background-color: #2a2a2a;
     color: #f1f1f1;
@@ -508,10 +512,12 @@ input:checked + .slider:before {
   transform: translateX(24px);
 }
 
+/* Animaciones */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
     }
 
     to {
