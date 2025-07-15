@@ -271,7 +271,7 @@ function requestLoan(event) {
       }).then(() => {
         setTimeout(() => {
           showSection('home');
-        }, 2000);
+        }, 0);
       });
     }
   });
@@ -296,7 +296,10 @@ function updateDebt() {
   const debtMovements = document.getElementById('debt-movements');
   if (debtMovements) {
     debtMovements.innerHTML = '';
-    const debtRelated = user.movements.filter(mov => mov.includes("Préstamo") || mov.includes("deuda"));
+    const debtRelated = user.movements.filter(mov => mov.includes("Préstamo") || mov.includes("deuda"))
+    .slice(-5)
+    .reverse();
+
     debtRelated.forEach(mov => {
       const li = document.createElement('li');
       li.textContent = mov;
@@ -351,7 +354,11 @@ function payDebt(event) {
     icon: 'success',
     title: 'Deuda pagada',
     text: `Pagaste $${amount}. Deuda restante: $${user.debt.toFixed(2)}`
-  });
+  }).then(() => {
+        setTimeout(() => {
+          showSection('home');
+        }, 0);
+      });
 }
 
 function transfer(event, type) {
@@ -400,6 +407,10 @@ function transfer(event, type) {
         title: 'Transferencia exitosa',
         text: `Transferiste $${amount} a ${type.toUpperCase()} ${recipient}.`,
         ...swalTheme,
+      }).then(() => {
+        setTimeout(() => {
+          showSection('home');
+        }, 0);
       });
     }
   });
