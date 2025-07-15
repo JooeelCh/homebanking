@@ -162,22 +162,23 @@
                     <section id="movements" class="section movements hidden">
                         <h2>Movimientos</h2>
                         <div class="filters">
-                        <label for="filter-type">Filtrar por tipo:</label>
-                        <select id="filter-type" onchange="updateMovements()">
-                            <option value="all">Todos</option>
-                            <option value="deposit">Depósitos</option>
-                            <option value="withdraw">Retiros</option>
-                            <option value="loan">Préstamos</option>
-                            <option value="transfer">Transferencias</option>
-                        </select>
+                            <label for="filter-type">Filtrar por tipo:</label>
+                            <select id="filter-type" onchange="updateMovements()">
+                                <option value="all">Todos</option>
+                                <option value="deposit">Depósitos</option>
+                                <option value="withdraw">Retiros</option>
+                                <option value="loan">Préstamos</option>
+                                <option value="transfer">Transferencias</option>
+                            </select>
 
-                        <label for="order">Ordenar por:</label>
-                        <select id="order" onchange="updateMovements()">
-                            <option value="desc">Más nuevos</option>
-                            <option value="asc">Más viejos</option>
-                        </select>
+                            <label for="order">Ordenar por:</label>
+                            <select id="order" onchange="updateMovements()">
+                                <option value="desc">Más nuevos</option>
+                                <option value="asc">Más viejos</option>
+                            </select>
                         </div>
                         <ul id="movements-list"></ul>
+                        <div id="pagination" class="pagination"></div>
                     </section>
                 </main>
             </div>

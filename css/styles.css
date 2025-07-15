@@ -316,7 +316,7 @@ button:hover {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 .filters label {
     font-weight: 600;
@@ -332,6 +332,22 @@ button:hover {
 .filters select:focus {
     border-color: #dee2e6;
     outline: none;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.pagination button {
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.pagination button.active-page {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
 }
 
 /* Footer */
@@ -425,6 +441,13 @@ body.dark-mode input, body.dark-mode select {
     color: #f1f1f1;
     border: 1px solid #444444;
 }
+
+body.dark-mode #pagination button.active-page {
+  font-weight: bold;
+  background-color: #00bfa6;
+  color: white;
+}
+
 
 body.dark-mode ul li {
     background: linear-gradient(to right, #2a2a2a, #0d1117);

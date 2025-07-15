@@ -268,6 +268,10 @@ function requestLoan(event) {
         title: "Préstamo aprobado",
         html: `Monto solicitado: <strong>$${amount}</strong>.<br>Total a devolver: <strong>$${total.toFixed(2)}</strong>`,
         ...swalTheme,
+      }).then(() => {
+        setTimeout(() => {
+          showSection('home');
+        }, 2000);
       });
     }
   });
@@ -401,7 +405,7 @@ function transfer(event, type) {
   });
 }
 
-function updateMovements() {
+function updateMovements(page = 1) {
   const ul = document.getElementById('movements-list');
   if (!ul) return;
 
@@ -420,13 +424,38 @@ function updateMovements() {
 
   if (order === 'asc') filtered = filtered.slice().reverse();
 
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  page = Math.min(Math.max(1, page), totalPages);
+
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginated = filtered.slice(start, end);
+
   ul.innerHTML = '';
-  filtered.forEach(mov => {
+  paginated.forEach(mov => {
     const li = document.createElement('li');
     li.textContent = mov;
     ul.appendChild(li);
   });
+
+  renderPagination(page, totalPages);
 }
+
+function renderPagination(current, total) {
+  const container = document.getElementById('pagination');
+  if (!container) return;
+  container.innerHTML = '';
+
+  for (let i = 1; i <= total; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.className = i === current ? 'active-page' : '';
+    btn.onclick = () => updateMovements(i);
+    container.appendChild(btn);
+  }
+}
+
 
 function addMovement(desc) {
   const entry = `${new Date().toLocaleString()} - ${desc}`;
