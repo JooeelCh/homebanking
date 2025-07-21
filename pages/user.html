@@ -1,194 +1,194 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Banco de la Ciudad</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <link rel="stylesheet" href="../css/styles.css">
-    </head>
-    <body>
-        <div class="layout">
-            <header>
-            <h1 class="logo"><i class="fas fa-landmark"></i> Banco de la Ciudad</h1>
-            <div class="header-buttons">
-                <div class="dark-mode-toggle">
-                    <label class="switch">
-                        <input type="checkbox" id="darkModeSwitch" onchange="toggleDarkMode()">
-                        <span class="slider"></span>
-                    </label>
-                    <span class="toggle-label">Modo Oscuro</span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de la Ciudad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="layout">
+        <header>
+        <h1 class="logo"><i class="fas fa-landmark"></i> Banco de la Ciudad</h1>
+        <div class="header-buttons">
+            <div class="dark-mode-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="darkModeSwitch" onchange="toggleDarkMode()">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Modo Oscuro</span>
+            </div>
+            <button class="nav-button" onclick="showSection('profile')"><i class="fas fa-user"></i> Mis Datos</button>
+            <button class="nav-button" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
+        </div>
+        </header>
+        <h2 class="title" id="title"></h2>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <span><i class="fas fa-bars"></i> Menu</span>
+                <nav class="navbar">
+                <button class="nav-button" onclick="showSection('home')"><i class="fas fa-home"></i> Inicio</button>
+                <button class="nav-button" onclick="showSection('balance')"><i class="fas fa-money-bill-wave"></i> Ingresar | Retirar</button>
+                <button class="nav-button" onclick="showSection('debts')"><i class="fas fa-hand-holding-usd"></i> Prestamos</button>
+                <button class="nav-button" onclick="showSection('transfer')"><i class="fas fa-exchange-alt"></i> Transferencias</button>
+                <button class="nav-button" onclick="showSection('movements')"><i class="fas fa-list"></i> Movimientos</button>
+                </nav>
+            </aside>
+
+            <main class="sections">
+                <section id="home" class="section home">
+                <h2>Panel Central</h2>
+                <div class="home-info">
+                    <h3>Saldo: $<span id="actual-balance"></span></h3>
+                    <h3>Deuda: $<span id="actual-debt"></span></h3>
                 </div>
-                <button class="nav-button" onclick="showSection('profile')"><i class="fas fa-user"></i> Mis Datos</button>
-                <button class="nav-button" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
-            </div>
-            </header>
-            <h2 class="title" id="title"></h2>
+                <h2><i class="fas fa-clock"></i> Últimos movimientos:</h2>
+                <div class="last-movements">
+                    <ul id="last-movements"></ul>
+                </div>
+                </section>
 
-            <div class="main-content">
-                <aside class="sidebar">
-                    <span><i class="fas fa-bars"></i> Menu</span>
-                    <nav class="navbar">
-                    <button class="nav-button" onclick="showSection('home')"><i class="fas fa-home"></i> Inicio</button>
-                    <button class="nav-button" onclick="showSection('balance')"><i class="fas fa-money-bill-wave"></i> Ingresar | Retirar</button>
-                    <button class="nav-button" onclick="showSection('debts')"><i class="fas fa-hand-holding-usd"></i> Prestamos</button>
-                    <button class="nav-button" onclick="showSection('transfer')"><i class="fas fa-exchange-alt"></i> Transferencias</button>
-                    <button class="nav-button" onclick="showSection('movements')"><i class="fas fa-list"></i> Movimientos</button>
-                    </nav>
-                </aside>
-
-                <main class="sections">
-                    <section id="home" class="section home">
-                    <h2>Panel Central</h2>
-                    <div class="home-info">
-                        <h3>Saldo: $<span id="actual-balance"></span></h3>
-                        <h3>Deuda: $<span id="actual-debt"></span></h3>
+                <section id="profile" class="section profile hidden">
+                    <h2>Mis datos</h2>
+                    <div class="profile-info">
+                        <h3>Nombre: <span id="user-name"></span></p>
+                        <h3>Apellido: <span id="user-lastname"></span></p>
+                        <h3>DNI: <span id="user-document"></span></p>
                     </div>
-                    <h2><i class="fas fa-clock"></i> Últimos movimientos:</h2>
-                    <div class="last-movements">
-                        <ul id="last-movements"></ul>
+                    <div class="profile-keys">
+                        <div class="alias-edit">
+                            <h3>Alias: <span id="user-alias"></span></h3>
+                            <button id="alias-edit-btn" onclick="enableEdit()">
+                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                    width="25" height="25" viewBox="0 0 24 24" 
+                                    fill="none" stroke="currentColor" 
+                                    stroke-width="2" stroke-linecap="round" 
+                                    stroke-linejoin="round" class="feather feather-edit">
+                                    <path d="M11 4h-4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <h3>CBU: <span id="user-cbu"></span></p>
                     </div>
-                    </section>
+                </section>
 
-                    <section id="profile" class="section profile hidden">
-                        <h2>Mis datos</h2>
-                        <div class="profile-info">
-                            <h3>Nombre: <span id="user-name"></span></p>
-                            <h3>Apellido: <span id="user-lastname"></span></p>
-                            <h3>DNI: <span id="user-document"></span></p>
-                        </div>
-                        <div class="profile-keys">
-                            <div class="alias-edit">
-                                <h3>Alias: <span id="user-alias"></span></h3>
-                                <button id="alias-edit-btn" onclick="enableEdit()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" 
-                                        width="25" height="25" viewBox="0 0 24 24" 
-                                        fill="none" stroke="currentColor" 
-                                        stroke-width="2" stroke-linecap="round" 
-                                        stroke-linejoin="round" class="feather feather-edit">
-                                        <path d="M11 4h-4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"></path>
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <h3>CBU: <span id="user-cbu"></span></p>
-                        </div>
-                    </section>
-
-                    <section id="balance" class="section deposit hidden">
-                        <h2>Depositos | Retiros</h2>
-                        <div class="buttons">
-                            <button class="balance-button" onclick="balanceOptions('deposit')">Depositos</button>
-                            <button class="balance-button" onclick="balanceOptions('withdraw')">Retiros</button>
-                        </div>
-                        <div id="balance-deposit" class="balance-option option hidden">
-                            <h3>Ingrese el monto que quiere depositar</h3>
-                            <form onsubmit="deposit(event)">
-                                <input type="number" id="deposit-amount" required>
-                                <button type="submit">Depositar</button>
+                <section id="balance" class="section deposit hidden">
+                    <h2>Depositos | Retiros</h2>
+                    <div class="buttons">
+                        <button class="balance-button" onclick="balanceOptions('deposit')">Depositos</button>
+                        <button class="balance-button" onclick="balanceOptions('withdraw')">Retiros</button>
+                    </div>
+                    <div id="balance-deposit" class="balance-option option hidden">
+                        <h3>Ingrese el monto que quiere depositar</h3>
+                        <form onsubmit="deposit(event)">
+                            <input type="number" id="deposit-amount" required>
+                            <button type="submit">Depositar</button>
+                        </form>
+                    </div>
+                    <div id="balance-withdraw" class="balance-option option hidden">
+                            <h3>Ingrese el monto que quiere retirar</h3>
+                            <form onsubmit="withdraw(event)">
+                                <input type="number" id="withdraw-amount" required>
+                                <button type="submit">Retirar</button>
                             </form>
-                        </div>
-                        <div id="balance-withdraw" class="balance-option option hidden">
-                                <h3>Ingrese el monto que quiere retirar</h3>
-                                <form onsubmit="withdraw(event)">
-                                    <input type="number" id="withdraw-amount" required>
-                                    <button type="submit">Retirar</button>
-                                </form>
-                        </div>
-                        <div id="message-balance" class="message"></div>
-                    </section>
+                    </div>
+                    <div id="message-balance" class="message"></div>
+                </section>
 
-                    <section id="debts" class="section debt hidden">
-                        <h2>Prestamos</h2>
-                        <div class="debt-status">
-                            <h3>Deuda actual: $<span id="debt">0</span></h3>
-                        </div>
-                        <div class="buttons">
-                            <button class="debt-button" onclick="debtOptions('request')">Solicitar préstamo</button>
-                            <button class="debt-button" id="pay-debt-btn" onclick="debtOptions('pay')">Pagar préstamo</button>
-                        </div>
-                        <div id="debt-request" class="debt-option option hidden">
-                            <h3>Solicitar un préstamo</h3>
-                            <form onsubmit="requestLoan(event)">
-                            <input type="number" id="debt-amount" placeholder="Monto" required>
-                            <button type="submit">Pedir préstamo</button>
-                            </form>
-                            <p>Interés: 10%</p>
-                        </div>
+                <section id="debts" class="section debt hidden">
+                    <h2>Prestamos</h2>
+                    <div class="debt-status">
+                        <h3>Deuda actual: $<span id="debt">0</span></h3>
+                    </div>
+                    <div class="buttons">
+                        <button class="debt-button" onclick="debtOptions('request')">Solicitar préstamo</button>
+                        <button class="debt-button" id="pay-debt-btn" onclick="debtOptions('pay')">Pagar préstamo</button>
+                    </div>
+                    <div id="debt-request" class="debt-option option hidden">
+                        <h3>Solicitar un préstamo</h3>
+                        <form onsubmit="requestLoan(event)">
+                        <input type="number" id="debt-amount" placeholder="Monto" required>
+                        <button type="submit">Pedir préstamo</button>
+                        </form>
+                        <p>Interés: 10%</p>
+                    </div>
 
-                        <div id="debt-pay" class="debt-option option hidden">
-                            <h3>Pagar deuda</h3>
-                            <form onsubmit="payDebt(event)">
-                            <input type="number" id="debt-pay-amount" placeholder="Monto a pagar" required>
-                            <button type="submit">Pagar deuda</button>
-                            </form>
-                        </div>
+                    <div id="debt-pay" class="debt-option option hidden">
+                        <h3>Pagar deuda</h3>
+                        <form onsubmit="payDebt(event)">
+                        <input type="number" id="debt-pay-amount" placeholder="Monto a pagar" required>
+                        <button type="submit">Pagar deuda</button>
+                        </form>
+                    </div>
 
-                        <div id="message-debt" class="message"></div>
+                    <div id="message-debt" class="message"></div>
 
-                        <h3>Movimientos relacionados:</h3>
-                        <ul id="debt-movements"></ul>
-                    </section>
+                    <h3>Movimientos relacionados:</h3>
+                    <ul id="debt-movements"></ul>
+                </section>
 
-                    <section id="transfer" class="section transfer hidden">
-                        <h2>Transferencias</h2>
-                        <div class="buttons">
-                            <button class="transfer-button" onclick="showTransferForm('alias')">Transferir por Alias</button>
-                            <button class="transfer-button" onclick="showTransferForm('cbu')">Transferir por CBU</button>
-                        </div>
-                        <div id="transfer-form-alias" class="transfer-form-option option hidden">
-                            <h3>Transferencia por Alias</h3>
-                            <form onsubmit="transfer(event, 'alias')">
-                                <input type="text" id="alias" placeholder="Alias del destinatario" required>
-                                <input type="number" id="alias-amount" placeholder="Monto" required>
-                                <button type="submit">Enviar transferencia</button>
-                            </form>
-                        </div>
+                <section id="transfer" class="section transfer hidden">
+                    <h2>Transferencias</h2>
+                    <div class="buttons">
+                        <button class="transfer-button" onclick="showTransferForm('alias')">Transferir por Alias</button>
+                        <button class="transfer-button" onclick="showTransferForm('cbu')">Transferir por CBU</button>
+                    </div>
+                    <div id="transfer-form-alias" class="transfer-form-option option hidden">
+                        <h3>Transferencia por Alias</h3>
+                        <form onsubmit="transfer(event, 'alias')">
+                            <input type="text" id="alias" placeholder="Alias del destinatario" required>
+                            <input type="number" id="alias-amount" placeholder="Monto" required>
+                            <button type="submit">Enviar transferencia</button>
+                        </form>
+                    </div>
 
-                        <div id="transfer-form-cbu" class="transfer-form-option option hidden">
-                            <h3>Transferencia por CBU</h3>
-                            <form onsubmit="transfer(event, 'cbu')">
-                                <input type="text" id="cbu" placeholder="CBU del destinatario" required>
-                                <input type="number" id="cbu-amount" placeholder="Monto" required>
-                                <button type="submit">Enviar transferencia</button>
-                            </form>
-                        </div>
+                    <div id="transfer-form-cbu" class="transfer-form-option option hidden">
+                        <h3>Transferencia por CBU</h3>
+                        <form onsubmit="transfer(event, 'cbu')">
+                            <input type="text" id="cbu" placeholder="CBU del destinatario" required>
+                            <input type="number" id="cbu-amount" placeholder="Monto" required>
+                            <button type="submit">Enviar transferencia</button>
+                        </form>
+                    </div>
 
-                        <div id="message-transfer" class="message"></div>
+                    <div id="message-transfer" class="message"></div>
 
-                    </section>
+                </section>
 
-                    <section id="movements" class="section movements hidden">
-                        <h2>Movimientos</h2>
-                        <div class="filters">
-                            <label for="filter-type">Filtrar por tipo:</label>
-                            <select id="filter-type" onchange="updateMovements()">
-                                <option value="all">Todos</option>
-                                <option value="deposit">Depósitos</option>
-                                <option value="withdraw">Retiros</option>
-                                <option value="loan">Préstamos</option>
-                                <option value="transfer">Transferencias</option>
-                            </select>
+                <section id="movements" class="section movements hidden">
+                    <h2>Movimientos</h2>
+                    <div class="filters">
+                        <label for="filter-type">Filtrar por tipo:</label>
+                        <select id="filter-type" onchange="updateMovements()">
+                            <option value="all">Todos</option>
+                            <option value="deposit">Depósitos</option>
+                            <option value="withdraw">Retiros</option>
+                            <option value="loan">Préstamos</option>
+                            <option value="transfer">Transferencias</option>
+                        </select>
 
-                            <label for="order">Ordenar por:</label>
-                            <select id="order" onchange="updateMovements()">
-                                <option value="desc">Más nuevos</option>
-                                <option value="asc">Más viejos</option>
-                            </select>
-                        </div>
-                        <ul id="movements-list"></ul>
-                        <div id="pagination" class="pagination"></div>
-                    </section>
-                </main>
-            </div>
-
-            <footer>
-                <p class="copyright">&copy; 2025 Banco de la Ciudad</p>
-            </footer>
+                        <label for="order">Ordenar por:</label>
+                        <select id="order" onchange="updateMovements()">
+                            <option value="desc">Más nuevos</option>
+                            <option value="asc">Más viejos</option>
+                        </select>
+                    </div>
+                    <ul id="movements-list"></ul>
+                    <div id="pagination" class="pagination"></div>
+                </section>
+            </main>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="../js/main.js"></script>
-    </body>
+        <footer>
+            <p class="copyright">&copy; 2025 Banco de la Ciudad</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/main.js"></script>
+</body>
 </html>
